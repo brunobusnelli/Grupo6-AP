@@ -1,0 +1,25 @@
+.task-item {
+    border-radius: 8px;
+    border: 2px solid #A35709;
+    background: #242320;
+    width: 345px;
+    height: 175px;
+    padding: 16px;
+    display: block;
+    align-items: center;
+    gap: 16px;
+    transition: all 1s;
+}
+
+.dellBtn {
+    background-color: transparent;
+    border: none;
+}
+
+.tasks-title {
+    color: #FF8303;
+}
+
+.task-item:hover {
+    transform: scale(1.04);
+}
