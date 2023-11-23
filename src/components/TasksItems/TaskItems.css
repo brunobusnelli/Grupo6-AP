@@ -3,8 +3,8 @@
     border: 2px solid #A35709;
     background: #242320;
     width: 345px;
-    height: 175px;
-    padding: 16px;
+    height: 250px;
+    padding: 50px;
     display: block;
     align-items: center;
     gap: 16px;
@@ -22,4 +22,8 @@
 
 .task-item:hover {
     transform: scale(1.04);
+}
+
+p {
+    word-wrap: break-word;
 }

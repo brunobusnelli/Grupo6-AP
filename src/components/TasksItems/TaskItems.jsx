@@ -12,7 +12,7 @@ const TaskItem = ({ task, deleteTask }) => {
               <p>{task.description}</p>
               <span>{task.createdAt}</span>
             </div>
-            <div className="col-3 d-flex">
+            <div className="col-3 d-flex justify-content-center">
               <button onClick={() => deleteTask(task.id)} className="dellBtn">
                 <img src={dellBtn} alt="" />
               </button>
