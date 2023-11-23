@@ -24,7 +24,7 @@ const TaskForm = ({ addTask }) => {
           <form onSubmit={handleAddNewTask}>
             <div className="col-6 d-flex flex-column gap-2">
                 <input type="text" placeholder="Titulo..." id='title' name='title'/>
-                <input type="text" placeholder="Descripcion..." id='description' name='description'/>
+                <textarea type="text" placeholder="Descripcion..." id='description' name='description'/>
             </div>
               <button type="submit" className="add">
                 <img src={addBtn} alt="" />
