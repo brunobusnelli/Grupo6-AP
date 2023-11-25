@@ -22,11 +22,11 @@ function App() {
     const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
     setTasks(storedTasks);
     updateCurrentTasks(storedTasks, searchString);
-  }, []); // Se ejecuta solo al montar el componente
+  }, []);
 
   useEffect(() => {
     updateCurrentTasks(tasks, searchString);
-  }, [searchString, tasks]); // Se ejecuta cuando cambia searchString o tasks
+  }, [searchString, tasks]);
 
   const updateCurrentTasks = (tasksArray, filter) => {
     const filteredTasks = tasksArray.filter(

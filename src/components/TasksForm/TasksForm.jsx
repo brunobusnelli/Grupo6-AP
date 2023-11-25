@@ -26,9 +26,11 @@ const TaskForm = ({ addTask }) => {
                 <input type="text" placeholder="Titulo..." id='title' name='title'/>
                 <textarea type="text" placeholder="Descripcion..." id='description' name='description'/>
             </div>
-              <button type="submit" className="add">
-                <img src={addBtn} alt="" />
+            <div className="col-lg-1 col-md-2 col-sm-2 col-2 d-flex align-items-center justify-content-center">
+            <button type="submit" className="add">
+                <img src={addBtn} alt="" className="img-fluid"/>
               </button>
+            </div>
           </form>
         </div>
       </div>
