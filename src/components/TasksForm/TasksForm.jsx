@@ -22,7 +22,7 @@ const TaskForm = ({ addTask }) => {
       <div className="container mt-4">
         <div className="row">
           <form onSubmit={handleAddNewTask}>
-            <div className="col-6 d-flex flex-column gap-2">
+            <div className="col-lg-6 col-md-6 d-flex flex-column gap-2">
                 <input type="text" placeholder="Titulo..." id='title' name='title'/>
                 <textarea type="text" placeholder="Descripcion..." id='description' name='description'/>
             </div>

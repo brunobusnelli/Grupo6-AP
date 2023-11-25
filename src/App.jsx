@@ -1,53 +1,61 @@
-import React, { useEffect, useState } from 'react'
-
-import { TasksForm, TasksList } from './components'
+import React, { useEffect, useState } from 'react';
+import { TasksForm, TasksList } from './components';
 
 function App() {
-  const [searchString, setSearchString] = useState('')
+  const [searchString, setSearchString] = useState('');
+  const [tasks, setTasks] = useState([]);
+  const [currentTasks, setCurrentTask] = useState([]);
 
-  //Este es el valor real de todas mis tareas actualmente
-  const [tasks, setTasks] = useState([])
+  const deleteTask = (taskId) => {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  };
 
-  //Este es para las tareas que muestro
-  const [currentTasks, setCurrentTask] = useState([])
-  const deleteTask = (taskId) =>{
-    setTasks(tasks.filter(task => task.id != taskId))
-  }
+  const addTask = (newTask) => {
+    const updatedTasks = [...tasks, newTask];
+    setTasks(updatedTasks);
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+  };
 
-  const addTask =  (newTask) =>{
-    setTasks([...tasks, newTask])
-  }
-  
+  useEffect(() => {
+    const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    setTasks(storedTasks);
+    updateCurrentTasks(storedTasks, searchString);
+  }, []); // Se ejecuta solo al montar el componente
 
-  useEffect(()=>{
-    setCurrentTask(tasks.filter(task => 
-      task.title.toLowerCase().includes(searchString.toLowerCase()) 
-      ||
-      task.description.toLowerCase().includes(searchString.toLowerCase())))
-  }, [searchString, tasks])
+  useEffect(() => {
+    updateCurrentTasks(tasks, searchString);
+  }, [searchString, tasks]); // Se ejecuta cuando cambia searchString o tasks
 
-  const handleChangeSearchString = (e) =>{
-    setSearchString(e.target.value)
+  const updateCurrentTasks = (tasksArray, filter) => {
+    const filteredTasks = tasksArray.filter(
+      (task) =>
+        task.title.toLowerCase().includes(filter.toLowerCase()) ||
+        task.description.toLowerCase().includes(filter.toLowerCase())
+    );
+    setCurrentTask(filteredTasks);
+  };
 
-  }
+  const handleChangeSearchString = (e) => {
+    setSearchString(e.target.value);
+  };
 
-
-   return (
+  return (
     <>
-    <h1 className='text-center mb-5'>Mi lista de tareas</h1>
-    <form>
+      <h1 className="text-center mb-5 task-list-title">Mi lista de tareas</h1>
+      <form>
         <label>Busca tu tarea:</label>
-        <input 
-        placeholder='Ingresa algo para filtrar' 
-        onChange={handleChangeSearchString}
-        value={searchString}
+        <input
+          placeholder="Ingresa algo para filtrar"
+          onChange={handleChangeSearchString}
+          value={searchString}
         />
       </form>
-      <TasksForm addTask={addTask}/>
-      <TasksList tasks={currentTasks} deleteTask={deleteTask}/>
-
+      <TasksForm addTask={addTask} />
+      <TasksList tasks={currentTasks} deleteTask={deleteTask} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
